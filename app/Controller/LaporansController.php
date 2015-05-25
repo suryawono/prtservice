@@ -31,6 +31,7 @@ class LaporansController extends AppController {
                         $transaksi = $transaksiModel->find("all", array(
                             "conditions" => array(
                                 "Transaksi.anggota_id" => $anggota_id,
+                                "Year(Transaksi.waktu)" => $tahun,
                             ),
                             "fields" => array(
                                 "sum(CASE WHEN Kategori.jenis_kategori_id = 1 THEN Transaksi.besaran ELSE 0 END) as pemasukan",
@@ -47,7 +48,7 @@ class LaporansController extends AppController {
                         $data = [];
                         $data['anggota_id'] = $anggota_id;
                         $data['transaksi'] = $transaksi;
-                        $data['query']=$this->params->query;
+                        $data['query'] = $this->params->query;
                         $code = 400;
                     }
                     break;
