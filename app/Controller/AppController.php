@@ -113,6 +113,7 @@ class AppController extends Controller {
     }
 
     function beforeFilter() {
+        $this->response->header('Access-Control-Allow-Origin', '*');
         $this->__checkPremission();
         if (!$this->request->is('ajax')) {
             $this->set('leftSideMenuData', $this->_createLeftMenu());
